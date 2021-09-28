@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "browserslist": {
+    "production": [
+      "last 3 firefox versions",
+      "last 3 chrome versions"
+    ],
+    "development": [
+      "last 1 firefox version",
+      "last 1 chrome version"
+    ]
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "sass": "^1.42.1",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "maplibre-gl": "^2.0.0-pre.1"
+  }
+}
