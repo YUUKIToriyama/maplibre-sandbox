@@ -1,5 +1,6 @@
 import "./style.scss";
 import maplibregl from 'maplibre-gl';
+import { GeoSearch } from '@coex/geosearch';
 
 const map = new maplibregl.Map({
 	container: "myMap",
@@ -41,3 +42,25 @@ const createDivContent = (feature: any): HTMLDivElement => {
 	div.appendChild(table);
 	return div;
 }
+
+const inputField = document.getElementById("inputField");
+const searchButton = document.getElementById("searchButton");
+searchButton.addEventListener("click", async () => {
+	const geoSearch = new GeoSearch();
+	const result = await geoSearch.suggest(inputField.value, {
+		country: "jp",
+		scope: "muni"
+	});
+	console.log(inputField.value);
+	console.log(result);
+	if (result.length > 0) {
+		const data = result[0]["userData"];
+		map.flyTo({
+			center: {
+				lat: data.latitude,
+				lng: data.longitude
+			},
+			zoom: 13
+		})
+	}
+})
